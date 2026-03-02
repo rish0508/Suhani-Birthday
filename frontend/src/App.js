@@ -3,9 +3,9 @@ import "@/App.css";
 import confetti from "canvas-confetti";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Heart, Moon, UtensilsCrossed, GraduationCap, 
+  Moon, UtensilsCrossed, GraduationCap, 
   Gamepad2, Music, Play, Pause, X, ChevronLeft, ChevronRight,
-  Volume2, VolumeX, PartyPopper, Sparkles, Dices
+  Volume2, VolumeX, PartyPopper, Sparkles, Dices, Palette, ExternalLink
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./components/ui/dialog";
