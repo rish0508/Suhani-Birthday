@@ -1,0 +1,118 @@
+{
+  "design_identity": {
+    "persona": "E1 - The Anti-AI Designer",
+    "core_principles": [
+      "Fusion over Imitation: Brown Aesthetic x Gen-Z Chaos x Interactive Gaming",
+      "Emotion First: Cozy vibes meet sudden bursts of energy (Among Us/Confetti)",
+      "Content is King: Every section is an inside joke",
+      "Imperfection: Use tilted elements, handwritten fonts, and scattered layouts to feel human"
+    ],
+    "hall_of_shame": [
+      "No generic 'Happy Birthday' banners",
+      "No standard Bootstrap grids",
+      "No boring default shadows - use colored, layered shadows",
+      "No 'Inter' for headings"
+    ]
+  },
+  "typography": {
+    "headings": {
+      "family": "Syne",
+      "weights": ["700", "800"],
+      "usage": "Main titles, dramatic statements",
+      "fallback": "sans-serif"
+    },
+    "body": {
+      "family": "DM Sans",
+      "weights": ["400", "500", "700"],
+      "usage": "Paragraphs, UI elements",
+      "fallback": "sans-serif"
+    },
+    "handwritten": {
+      "family": "Gloria Hallelujah",
+      "weights": ["400"],
+      "usage": "Polaroid captions, annotations, stickers",
+      "fallback": "cursive"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#FDFBF7",
+      "foreground": "#4A3B32",
+      "primary": "#5D4037",
+      "secondary": "#8D6E63",
+      "accent_sage": "#8FA895",
+      "accent_red": "#D32F2F",
+      "accent_cream": "#F5F5DC",
+      "card_bg": "#FFFFFF"
+    },
+    "gradients": {
+      "subtle_brown": "linear-gradient(135deg, #FDFBF7 0%, #EFEBE9 100%)",
+      "emergency": "radial-gradient(circle, #FFEBEE 0%, #D32F2F 100%)"
+    }
+  },
+  "layout_strategy": {
+    "spacing": "Relaxed and scattered. Use `gap-8` to `gap-16`.",
+    "grid_system": "Bento Grid for Fun Facts, Masonry for Gallery",
+    "container_width": "max-w-6xl",
+    "visual_enhancers": [
+      "Floating particles (brown sparkles)",
+      "Tilted cards (rotate-1, -rotate-2)",
+      "Paper textures/Grain overlays"
+    ]
+  },
+  "components": {
+    "ui_library": "shadcn/ui (customized)",
+    "custom_components": [
+      {
+        "name": "PolaroidCard",
+        "description": "White border p-4, shadow-lg, handwritten caption at bottom, slight random rotation",
+        "path": "/app/frontend/src/components/custom/PolaroidCard.js"
+      },
+      {
+        "name": "FlipCard",
+        "description": "3D transform flip on hover. Front: Icon/Title. Back: Funny details.",
+        "path": "/app/frontend/src/components/custom/FlipCard.js"
+      },
+      {
+        "name": "EmergencyButton",
+        "description": "Big red button, pulsing shadow, shakes on hover, triggers modal",
+        "path": "/app/frontend/src/components/custom/EmergencyButton.js"
+      },
+      {
+        "name": "AudioToggle",
+        "description": "Fixed bottom-right, pill shape, controls 'Plain Jane' audio",
+        "path": "/app/frontend/src/components/custom/AudioToggle.js"
+      }
+    ]
+  },
+  "image_urls": {
+    "hero_bg": "https://images.unsplash.com/photo-1717044901429-26e91f0a8f88?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2ODl8MHwxfHNlYXJjaHwxfHxicm93biUyMGFlc3RoZXRpYyUyMGNvenklMjByb29tJTIwY29mZmVlfGVufDB8fHx8MTc3MjQyMTAxNXww&ixlib=rb-4.1.0&q=85",
+    "gallery": [
+      "https://images.unsplash.com/photo-1607504622473-62981bf57d13?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTV8MHwxfHNlYXJjaHw0fHxmcmllbmRzJTIwbGF1Z2hpbmclMjBuaWdodCUyMG91dCUyMHBhcnR5JTIwYnJvd24lMjB0b25lfGVufDB8fHx8MTc3MjQyMTAxNnww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1765991736112-947360518547?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTV8MHwxfHNlYXJjaHwzfHxmcmllbmRzJTIwbGF1Z2hpbmclMjBuaWdodCUyMG91dCUyMHBhcnR5JTIwYnJvd24lMjB0b25lfGVufDB8fHx8MTc3MjQyMTAxNnww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1597736960442-d613cca349db?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTV8MHwxfHNlYXJjaHwyfHxmcmllbmRzJTIwbGF1Z2hpbmclMjBuaWdodCUyMG91dCUyMHBhcnR5JTIwYnJvd24lMjB0b25lfGVufDB8fHx8MTc3MjQyMTAxNnww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1700113019655-fa4159d9acd2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwyfHxzdHVkZW50JTIwc3R1ZHlpbmclMjBhZXN0aGV0aWMlMjBsYXB0b3AlMjBjb2ZmZWV8ZW58MHx8fHwxNzcyNDIxMDE3fDA&ixlib=rb-4.1.0&q=85"
+    ],
+    "fun_facts": {
+      "olives": "https://images.unsplash.com/photo-1727176401986-6289c5121eef?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHwxfHxwbGF0ZSUyMG9mJTIwZ3JlZW4lMjBvbGl2ZXMlMjByZXN0YXVyYW50fGVufDB8fHx8MTc3MjQyMTAxNnww&ixlib=rb-4.1.0&q=85",
+      "sleep": "https://images.unsplash.com/photo-1666934209818-cd6a6d08bd8d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHNsZWVwaW5nJTIwd2l0aCUyMGV5ZSUyMG1hc2slMjBhZXN0aGV0aWN8ZW58MHx8fHwxNzcyNDIxMDI3fDA&ixlib=rb-4.1.0&q=85",
+      "monopoly": "https://images.unsplash.com/photo-1627227850541-41121d9c1794?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwyfHxtb25vcG9seSUyMGRlYWwlMjBjYXJkJTIwZ2FtZXxlbnwwfHx8fDE3NzI0MjEwMjl8MA&ixlib=rb-4.1.0&q=85"
+    }
+  },
+  "motion": {
+    "library": "framer-motion",
+    "guidelines": [
+      "Use `staggerChildren` for lists/grids",
+      "Cards should have `whileHover={{ scale: 1.05, rotate: 1 }}`",
+      "Emergency Meeting modal must 'pop' in with a bounce",
+      "Scroll animations: Fade up + slight rotation"
+    ]
+  },
+  "universal_guidelines": [
+    "Do NOT use gradients for text, it looks cheap on brown backgrounds",
+    "Use `data-testid` on all interactive elements",
+    "Ensure mobile responsiveness - adjust polaroid sizes for small screens",
+    "Use 'sonner' for toasts",
+    "Do not ask clarifying questions, just build it with confidence"
+  ]
+}
