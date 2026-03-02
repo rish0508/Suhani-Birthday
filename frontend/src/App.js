@@ -290,6 +290,15 @@ function App() {
             </Button>
             
             <Button
+              data-testid="play-music-btn"
+              onClick={() => setShowMusicModal(true)}
+              className="bg-[#5D4037] hover:bg-[#4A3B32] text-white px-8 py-6 text-lg rounded-full font-body"
+            >
+              <Music className="w-5 h-5 mr-2" />
+              Play Happy Birthday
+            </Button>
+            
+            <Button
               data-testid="emergency-meeting-btn"
               onClick={() => document.getElementById('amongus')?.scrollIntoView({ behavior: 'smooth' })}
               className="emergency-btn text-white px-8 py-6 text-lg rounded-full font-body"
