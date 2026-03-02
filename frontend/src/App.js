@@ -754,7 +754,17 @@ function App() {
                 className="mt-8 glass-dark rounded-xl p-6 max-w-md mx-auto"
               >
                 <p className="font-body text-[#FDFBF7]/80">
-                  You're going to crush that Master's degree. Good luck!
+                  You're gonna crush 490 with Marina. You got{' '}
+                  <a 
+                    href="https://www.linkedin.com/in/ian-paterson-98a887257/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#8B6914] hover:text-[#A67C52] underline inline-flex items-center gap-1"
+                  >
+                    Ian
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                  {' '}bro
                 </p>
               </motion.div>
             )}
