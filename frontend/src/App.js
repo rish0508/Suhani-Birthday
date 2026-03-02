@@ -798,7 +798,7 @@ function App() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            Happy 23rd Birthday, Suhani 🤎
+            Happy Birthday Suhani
           </motion.p>
         </div>
       </section>
