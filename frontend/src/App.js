@@ -421,7 +421,7 @@ function App() {
               transition={{ delay: 0.1 }}
             >
               <QuirkCard
-                icon={Heart}
+                icon={Palette}
                 title="Favorite Color"
                 frontText="Brown"
                 backText="Everything she owns is brown. Her wardrobe is basically a coffee shop."
@@ -435,13 +435,24 @@ function App() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <QuirkCard
-                icon={Moon}
-                title="Saje Sleep Well"
-                frontText="Her 'vape'"
-                backText="She uses Saje Sleep Well like other people use vapes. Will offer you essential oils before asking how you're doing."
-                color="#8B6914"
-              />
+              <div className="flip-card quirk-card">
+                <div className="flip-card-inner relative w-full h-full">
+                  <div 
+                    className="flip-card-front absolute w-full h-full rounded-xl p-4 flex flex-col items-center justify-center text-center"
+                    style={{ backgroundColor: '#8B6914' }}
+                  >
+                    <img src={SAJE_IMAGE} alt="Saje Sleep Well" className="w-16 h-20 object-contain mb-2" />
+                    <h3 className="font-heading text-lg font-bold text-white">Saje Sleep Well</h3>
+                    <p className="font-body text-white/80 mt-1 text-sm">Her 'vape'</p>
+                  </div>
+                  <div 
+                    className="flip-card-back absolute w-full h-full rounded-xl p-5 flex flex-col items-center justify-center text-center"
+                    style={{ backgroundColor: '#8B6914' }}
+                  >
+                    <p className="font-body text-sm text-white/90">She uses Saje Sleep Well like other people use vapes. Will offer you essential oils before asking how you're doing.</p>
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div
