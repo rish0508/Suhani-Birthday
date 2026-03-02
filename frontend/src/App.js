@@ -27,7 +27,6 @@ const ALL_PHOTOS = [
   "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/p5r22y2l_WhatsApp%20Image%202026-03-01%20at%2018.20.51.jpeg",
   "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/fmbsj92p_WhatsApp%20Image%202026-03-01%20at%2018.21.41.jpeg",
   "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/scntwdxu_WhatsApp%20Image%202026-03-01%20at%2018.25.57.jpeg",
-  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/blgiqk44_image.png",
 ];
 
 // Sparkle Particles Component
