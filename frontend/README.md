@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Happy Birthday Suhani - 23rd Birthday Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fun, Gen-Z birthday website with brown/gold aesthetic, interactive features, and inside jokes.
 
-## Available Scripts
+## Features
+- Birthday confetti animation
+- Photo gallery with lightbox
+- Flip cards with fun facts
+- Among Us emergency meeting section
+- Plain Jane by A$AP Ferg music player
+- Mobile responsive
 
-In the project directory, you can run:
+## Deploy to GitHub Pages
 
-### `npm start`
+### Option 1: Quick Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Create a new GitHub repository (e.g., `suhani-birthday`)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Download the code from Emergent (click "Download Code" button)
 
-### `npm test`
+3. Extract the files and copy everything from the `frontend` folder
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Initialize git and push:
+```bash
+cd frontend
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/suhani-birthday.git
+git push -u origin main
+```
 
-### `npm run build`
+5. Go to your repo → Settings → Pages
+   - Source: GitHub Actions
+   - The workflow will automatically build and deploy
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6. Your site will be live at: `https://YOUR_USERNAME.github.io/suhani-birthday/`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Option 2: Manual Build
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Install dependencies:
+```bash
+yarn install
+```
 
-### `npm run eject`
+2. Build the project:
+```bash
+yarn build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. The `build` folder contains the static files - upload these to any static hosting (Netlify, Vercel, etc.)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Local Development
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+yarn install
+yarn start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Tech Stack
+- React 19
+- Tailwind CSS
+- Framer Motion
+- Canvas Confetti
+- Shadcn/UI Components
 
-## Learn More
+## Customization
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Photos: Edit the `ALL_PHOTOS` array in `src/App.js`
+- Colors: Edit CSS variables in `src/index.css`
+- Content: Modify text directly in `src/App.js`
