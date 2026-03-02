@@ -950,17 +950,19 @@ function App() {
             </DialogTitle>
           </DialogHeader>
           
-          <div className="aspect-video w-full">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/BwmuvqFzfLI?autoplay=1"
-              title="FERG - Plain Jane"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="rounded-lg"
-            />
+          <div className="aspect-video w-full bg-black rounded-lg overflow-hidden">
+            {showMusicModal && (
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/BwmuvqFzfLI?autoplay=1&rel=0"
+                title="FERG - Plain Jane"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="rounded-lg"
+              />
+            )}
           </div>
           
           <p className="font-body text-[#A67C52] text-center text-sm mt-2">
