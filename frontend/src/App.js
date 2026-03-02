@@ -435,24 +435,13 @@ function App() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <div className="flip-card quirk-card">
-                <div className="flip-card-inner relative w-full h-full">
-                  <div 
-                    className="flip-card-front absolute w-full h-full rounded-xl p-4 flex flex-col items-center justify-center text-center"
-                    style={{ backgroundColor: '#8B6914' }}
-                  >
-                    <img src={SAJE_IMAGE} alt="Saje Sleep Well" className="w-16 h-20 object-contain mb-2" />
-                    <h3 className="font-heading text-lg font-bold text-white">Saje Sleep Well</h3>
-                    <p className="font-body text-white/80 mt-1 text-sm">Her 'vape'</p>
-                  </div>
-                  <div 
-                    className="flip-card-back absolute w-full h-full rounded-xl p-5 flex flex-col items-center justify-center text-center"
-                    style={{ backgroundColor: '#8B6914' }}
-                  >
-                    <p className="font-body text-sm text-white/90">She uses Saje Sleep Well like other people use vapes. Will offer you essential oils before asking how you're doing.</p>
-                  </div>
-                </div>
-              </div>
+              <QuirkCard
+                icon={Moon}
+                title="Saje Sleep Well"
+                frontText="Her 'vape'"
+                backText="Hope you continue using Saje like an addict every 10 seconds."
+                color="#8B6914"
+              />
             </motion.div>
 
             <motion.div
@@ -679,7 +668,7 @@ function App() {
             <p className="font-body text-[#FDFBF7]/80 mb-6">
               Order: "Whatever looks good"
               <br />
-              Translation: Everything on the menu
+              Translation: White Sauce Pasta
             </p>
             
             <Button
