@@ -940,6 +940,42 @@ function App() {
           </Button>
         </DialogContent>
       </Dialog>
+
+      {/* ==================== MUSIC MODAL (Plain Jane) ==================== */}
+      <Dialog open={showMusicModal} onOpenChange={setShowMusicModal}>
+        <DialogContent className="bg-[#141414] border-[#8B6914] max-w-xl">
+          <DialogHeader>
+            <DialogTitle className="font-heading text-2xl text-[#8B6914] text-center">
+              Happy Birthday Vibes
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="aspect-video w-full">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/BwmuvqFzfLI?autoplay=1"
+              title="FERG - Plain Jane"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            />
+          </div>
+          
+          <p className="font-body text-[#A67C52] text-center text-sm mt-2">
+            FERG - Plain Jane (Official Audio)
+          </p>
+          
+          <Button
+            onClick={() => setShowMusicModal(false)}
+            className="bg-[#8B6914] hover:bg-[#A67C52] text-white mt-4"
+            data-testid="music-modal-close-btn"
+          >
+            Close
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
