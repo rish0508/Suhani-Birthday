@@ -3,50 +3,41 @@ import "@/App.css";
 import confetti from "canvas-confetti";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Heart, Sparkles, Moon, UtensilsCrossed, GraduationCap, 
+  Heart, Moon, UtensilsCrossed, GraduationCap, 
   Gamepad2, Music, Play, Pause, X, ChevronLeft, ChevronRight,
-  Volume2, VolumeX, PartyPopper
+  Volume2, VolumeX, PartyPopper, Sparkles, Dices
 } from "lucide-react";
 import { Button } from "./components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "./components/ui/dialog";
-import { Switch } from "./components/ui/switch";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./components/ui/dialog";
 import { Progress } from "./components/ui/progress";
 import { Toaster, toast } from "sonner";
 
-// User uploaded photos
-const USER_PHOTOS = [
-  { src: "https://customer-assets.emergentagent.com/job_57bf3841-2aa7-492c-b653-218ee28c3459/artifacts/hgfx7p65_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%289%29.jpeg", caption: "Night out vibes ✨" },
-  { src: "https://customer-assets.emergentagent.com/job_57bf3841-2aa7-492c-b653-218ee28c3459/artifacts/ohlf6jz8_WhatsApp%20Image%202026-03-01%20at%2018.19.10%20%282%29.jpeg", caption: "Squad goals 💕" },
-  { src: "https://customer-assets.emergentagent.com/job_57bf3841-2aa7-492c-b653-218ee28c3459/artifacts/cph13vb8_WhatsApp%20Image%202026-03-01%20at%2018.19.10%20%281%29.jpeg", caption: "Main character moment 👑" },
-  { src: "https://customer-assets.emergentagent.com/job_57bf3841-2aa7-492c-b653-218ee28c3459/artifacts/ln6mk3gq_WhatsApp%20Image%202026-03-01%20at%2018.19.10.jpeg", caption: "Living her best life 🔥" },
-  { src: "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/dcq9zvca_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%288%29.jpeg", caption: "Iconic duo 💫" },
-  { src: "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/a6kiz1n5_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%287%29.jpeg", caption: "Slay queen 👸" },
-  { src: "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/808tt3c3_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%286%29.jpeg", caption: "Brown outfit supremacy 🤎" },
-  { src: "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/6tu87g9x_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%285%29.jpeg", caption: "Not the imposter, just iconic 🎮" },
-  { src: "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/tv2dg3r9_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%284%29.jpeg", caption: "Saje scent level: MAX 🌿" },
-];
-
-const FUNNY_CAPTIONS = [
-  "Main character detected ✅",
-  "Not the imposter, just iconic 🎮",
-  "Brown outfit supremacy 🤎",
-  "Saje scent level: MAX 🌿",
-  "Future Master's student vibes 📚",
-  "Four Olives VIP member 🍝",
-  "Emergency meeting called for being too cute 🚨",
-  "Monodeal champion energy 🎯",
-  "23 and thriving ✨",
-  "Crewmate energy only 👾"
+// All photos (14 total) - NO CAPTIONS
+const ALL_PHOTOS = [
+  "https://customer-assets.emergentagent.com/job_57bf3841-2aa7-492c-b653-218ee28c3459/artifacts/hgfx7p65_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%289%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_57bf3841-2aa7-492c-b653-218ee28c3459/artifacts/ohlf6jz8_WhatsApp%20Image%202026-03-01%20at%2018.19.10%20%282%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_57bf3841-2aa7-492c-b653-218ee28c3459/artifacts/cph13vb8_WhatsApp%20Image%202026-03-01%20at%2018.19.10%20%281%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_57bf3841-2aa7-492c-b653-218ee28c3459/artifacts/ln6mk3gq_WhatsApp%20Image%202026-03-01%20at%2018.19.10.jpeg",
+  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/dcq9zvca_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%288%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/a6kiz1n5_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%287%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/808tt3c3_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%286%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/6tu87g9x_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%285%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/tv2dg3r9_WhatsApp%20Image%202026-03-01%20at%2018.19.01%20%284%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/v9zs3khv_WhatsApp%20Image%202026-03-01%20at%2018.20.51%20%281%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/p5r22y2l_WhatsApp%20Image%202026-03-01%20at%2018.20.51.jpeg",
+  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/fmbsj92p_WhatsApp%20Image%202026-03-01%20at%2018.21.41.jpeg",
+  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/scntwdxu_WhatsApp%20Image%202026-03-01%20at%2018.25.57.jpeg",
+  "https://customer-assets.emergentagent.com/job_suhani-23-birthday/artifacts/blgiqk44_image.png",
 ];
 
 // Sparkle Particles Component
 const SparkleParticles = () => {
-  const sparkles = Array.from({ length: 20 }, (_, i) => ({
+  const sparkles = Array.from({ length: 15 }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
-    delay: Math.random() * 5,
-    duration: 5 + Math.random() * 5,
-    size: 4 + Math.random() * 8
+    delay: Math.random() * 8,
+    duration: 8 + Math.random() * 8,
+    size: 3 + Math.random() * 4
   }));
 
   return (
@@ -68,59 +59,47 @@ const SparkleParticles = () => {
   );
 };
 
-// Polaroid Card Component
-const PolaroidCard = ({ src, caption, onClick, rotation = 0, className = "" }) => {
-  const randomCaption = caption || FUNNY_CAPTIONS[Math.floor(Math.random() * FUNNY_CAPTIONS.length)];
-  
-  return (
-    <motion.div
-      className={`polaroid cursor-pointer ${className}`}
-      style={{ transform: `rotate(${rotation}deg)` }}
-      whileHover={{ scale: 1.05, rotate: rotation + 3 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onClick}
-    >
-      <img 
-        src={src} 
-        alt="Memory" 
-        className="w-full h-48 sm:h-56 object-cover rounded-sm"
-        loading="lazy"
-      />
-      <p className="font-handwritten text-center text-sm sm:text-base mt-3 text-[#4A3B32]">
-        {randomCaption}
-      </p>
-    </motion.div>
-  );
-};
+// Photo Card - Clean, no captions
+const PhotoCard = ({ src, onClick }) => (
+  <motion.div
+    className="photo-item rounded-lg cursor-pointer overflow-hidden"
+    whileHover={{ scale: 1.03 }}
+    whileTap={{ scale: 0.98 }}
+    onClick={onClick}
+  >
+    <img 
+      src={src} 
+      alt="" 
+      className="w-full h-48 sm:h-56 object-cover"
+      loading="lazy"
+    />
+  </motion.div>
+);
 
-// Flip Card Component
-const FlipCard = ({ icon: Icon, title, frontText, backText, color }) => {
-  return (
-    <div className="flip-card fun-fact-card">
-      <div className="flip-card-inner relative w-full h-full">
-        {/* Front */}
-        <div 
-          className="flip-card-front absolute w-full h-full rounded-2xl p-6 flex flex-col items-center justify-center text-center"
-          style={{ backgroundColor: color }}
-        >
-          <Icon className="w-12 h-12 mb-4 text-white" />
-          <h3 className="font-heading text-xl font-bold text-white">{title}</h3>
-          <p className="font-body text-white/90 mt-2">{frontText}</p>
-        </div>
-        {/* Back */}
-        <div 
-          className="flip-card-back absolute w-full h-full rounded-2xl p-6 flex flex-col items-center justify-center text-center"
-          style={{ backgroundColor: color }}
-        >
-          <p className="font-handwritten text-lg text-white">{backText}</p>
-        </div>
+// Quirk Card Component (flip cards for "What makes Suhani, Suhani")
+const QuirkCard = ({ icon: Icon, title, frontText, backText, color }) => (
+  <div className="flip-card quirk-card">
+    <div className="flip-card-inner relative w-full h-full">
+      <div 
+        className="flip-card-front absolute w-full h-full rounded-xl p-5 flex flex-col items-center justify-center text-center"
+        style={{ backgroundColor: color }}
+      >
+        <Icon className="w-10 h-10 mb-3 text-white/90" />
+        <h3 className="font-heading text-lg font-bold text-white">{title}</h3>
+        <p className="font-body text-white/80 mt-2 text-sm">{frontText}</p>
+      </div>
+      <div 
+        className="flip-card-back absolute w-full h-full rounded-xl p-5 flex flex-col items-center justify-center text-center"
+        style={{ backgroundColor: color }}
+      >
+        <p className="font-body text-sm text-white/90">{backText}</p>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 // Crewmate SVG Component
-const Crewmate = ({ color = "#5D4037", className = "" }) => (
+const Crewmate = ({ color = "#8B6914", className = "" }) => (
   <svg viewBox="0 0 100 120" className={`crewmate ${className}`}>
     <ellipse cx="50" cy="80" rx="35" ry="35" fill={color} />
     <ellipse cx="50" cy="45" rx="30" ry="35" fill={color} />
@@ -131,11 +110,11 @@ const Crewmate = ({ color = "#5D4037", className = "" }) => (
 
 // Navigation Dots
 const NavDots = ({ activeSection }) => {
-  const sections = ['hero', 'gallery', 'birthday', 'facts', 'amongus', 'sage', 'olives', 'masters', 'footer'];
+  const sections = ['hero', 'pictures', 'quirks', 'birthday', 'amongus', 'monodeal', 'olives', 'masters'];
   
   return (
     <div className="nav-dots">
-      {sections.map((section, index) => (
+      {sections.map((section) => (
         <button
           key={section}
           className={`nav-dot ${activeSection === section ? 'active' : ''}`}
@@ -155,16 +134,15 @@ function App() {
   const [voteModalOpen, setVoteModalOpen] = useState(false);
   const [voteResult, setVoteResult] = useState(false);
   const [reservationModalOpen, setReservationModalOpen] = useState(false);
-  const [relaxMode, setRelaxMode] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [encouragementRevealed, setEncouragementRevealed] = useState(false);
   const [mastersProgress, setMastersProgress] = useState(23);
   const [activeSection, setActiveSection] = useState('hero');
   const audioRef = useRef(null);
 
-  // Confetti function
+  // Confetti function - brown colors
   const fireConfetti = () => {
-    const colors = ['#5D4037', '#8D6E63', '#D7CCC8', '#BCAAA4', '#A1887F'];
+    const colors = ['#8B6914', '#A67C52', '#5D4037', '#D4A574', '#C4A67C'];
     
     confetti({
       particleCount: 100,
@@ -193,9 +171,7 @@ function App() {
       });
     }, 400);
     
-    toast.success("🎉 Birthday vibes activated!", {
-      description: "Blessings delivered ✅ (Sage-approved)"
-    });
+    toast.success("Happy Birthday Suhani! 🎂");
   };
 
   // Handle vote
@@ -230,10 +206,10 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // Track scroll position for navigation
+  // Track scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'gallery', 'birthday', 'facts', 'amongus', 'sage', 'olives', 'masters', 'footer'];
+      const sections = ['hero', 'pictures', 'quirks', 'birthday', 'amongus', 'monodeal', 'olives', 'masters'];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -250,12 +226,12 @@ function App() {
   }, []);
 
   // Lightbox navigation
-  const nextImage = () => setLightboxIndex((prev) => (prev + 1) % USER_PHOTOS.length);
-  const prevImage = () => setLightboxIndex((prev) => (prev - 1 + USER_PHOTOS.length) % USER_PHOTOS.length);
+  const nextImage = () => setLightboxIndex((prev) => (prev + 1) % ALL_PHOTOS.length);
+  const prevImage = () => setLightboxIndex((prev) => (prev - 1 + ALL_PHOTOS.length) % ALL_PHOTOS.length);
 
   return (
-    <div className={`relax-mode ${relaxMode ? 'active' : ''}`}>
-      <Toaster position="top-center" richColors />
+    <div className="bg-[#0a0a0a] min-h-screen">
+      <Toaster position="top-center" theme="dark" />
       <SparkleParticles />
       <NavDots activeSection={activeSection} />
       
@@ -265,7 +241,7 @@ function App() {
       </audio>
 
       {/* ==================== HERO SECTION ==================== */}
-      <section id="hero" className="hero-section min-h-screen flex flex-col items-center justify-center px-4 py-12 relative grain-overlay">
+      <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 py-12 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -273,25 +249,25 @@ function App() {
           className="text-center z-10 max-w-4xl"
         >
           <motion.h1 
-            className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#5D4037] mb-4"
+            className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#FDFBF7] mb-4"
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
           >
-            HAPPY 23RD BIRTHDAY, SUHANI 🎉
+            HAPPY 23RD BIRTHDAY
           </motion.h1>
           
-          <motion.p 
-            className="font-body text-base sm:text-lg text-[#8D6E63] mb-8 max-w-2xl mx-auto"
+          <motion.h2 
+            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-[#8B6914] mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Brown aesthetic. Sage vibes. Among Us energy. Master's era loading…
-          </motion.p>
+            SUHANI
+          </motion.h2>
           
           <motion.p 
-            className="font-handwritten text-lg text-[#A1887F] mb-8"
+            className="font-body text-[#A67C52] mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
@@ -303,45 +279,46 @@ function App() {
             <Button
               data-testid="confetti-btn"
               onClick={fireConfetti}
-              className="bg-[#5D4037] hover:bg-[#4A3B32] text-white px-8 py-6 text-lg rounded-full font-body animate-pulse-glow"
+              className="bg-[#8B6914] hover:bg-[#A67C52] text-white px-8 py-6 text-lg rounded-full font-body"
             >
               <PartyPopper className="w-5 h-5 mr-2" />
-              Press for Birthday Confetti
+              Birthday Confetti
             </Button>
             
             <Button
               data-testid="emergency-meeting-btn"
               onClick={() => document.getElementById('amongus')?.scrollIntoView({ behavior: 'smooth' })}
-              className="emergency-btn text-white px-8 py-6 text-lg rounded-full font-body animate-shake"
+              className="emergency-btn text-white px-8 py-6 text-lg rounded-full font-body"
             >
               🚨 Emergency Meeting
             </Button>
           </div>
 
-          {/* Featured Polaroids */}
-          <div className="flex flex-wrap justify-center gap-6 mt-8">
+          {/* Featured Photos */}
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
             <motion.div
-              initial={{ rotate: -5, opacity: 0 }}
-              animate={{ rotate: -5, opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
+              className="rounded-lg overflow-hidden border border-[#2a2a2a]"
             >
-              <PolaroidCard 
-                src={USER_PHOTOS[0].src} 
-                caption="The birthday queen 👑" 
-                rotation={-5}
+              <img 
+                src={ALL_PHOTOS[0]} 
+                alt="" 
+                className="w-48 h-48 object-cover cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => { setLightboxIndex(0); setLightboxOpen(true); }}
               />
             </motion.div>
             <motion.div
-              initial={{ rotate: 3, opacity: 0 }}
-              animate={{ rotate: 3, opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
-              className="hidden sm:block"
+              className="rounded-lg overflow-hidden border border-[#2a2a2a] hidden sm:block"
             >
-              <PolaroidCard 
-                src={USER_PHOTOS[3].src} 
-                caption="23 years of iconic 💫" 
-                rotation={3}
+              <img 
+                src={ALL_PHOTOS[3]} 
+                alt="" 
+                className="w-48 h-48 object-cover cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => { setLightboxIndex(3); setLightboxOpen(true); }}
               />
             </motion.div>
@@ -354,45 +331,45 @@ function App() {
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >
-          <div className="w-6 h-10 border-2 border-[#8D6E63] rounded-full flex justify-center pt-2">
-            <div className="w-1.5 h-3 bg-[#8D6E63] rounded-full" />
+          <div className="w-6 h-10 border-2 border-[#8B6914] rounded-full flex justify-center pt-2">
+            <div className="w-1.5 h-3 bg-[#8B6914] rounded-full" />
           </div>
         </motion.div>
       </section>
 
-      {/* ==================== PHOTO GALLERY ==================== */}
-      <section id="gallery" className="py-20 px-4 bg-[#FDFBF7]">
+      <div className="section-divider" />
+
+      {/* ==================== PICTURES SECTION ==================== */}
+      <section id="pictures" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.h2 
-            className="font-heading text-3xl sm:text-4xl font-bold text-center text-[#5D4037] mb-4"
+            className="font-heading text-3xl sm:text-4xl font-bold text-center text-[#FDFBF7] mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Suhani's Photo Evidence 📸
+            Pictures
           </motion.h2>
           <motion.p 
-            className="font-handwritten text-center text-[#8D6E63] mb-12"
+            className="font-body text-center text-[#A67C52] mb-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            (Proof she's been slaying since day one)
+            A collection of memories
           </motion.p>
 
           <div className="gallery-grid">
-            {USER_PHOTOS.map((photo, index) => (
+            {ALL_PHOTOS.map((photo, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.05 }}
               >
-                <PolaroidCard
-                  src={photo.src}
-                  caption={photo.caption}
-                  rotation={(index % 2 === 0 ? 1 : -1) * (Math.random() * 3)}
+                <PhotoCard
+                  src={photo}
                   onClick={() => { setLightboxIndex(index); setLightboxOpen(true); }}
                 />
               </motion.div>
@@ -401,33 +378,148 @@ function App() {
         </div>
       </section>
 
-      {/* ==================== BIG BIRTHDAY MOMENT ==================== */}
-      <section id="birthday" className="birthday-moment py-32 px-4 relative">
+      <div className="section-divider" />
+
+      {/* ==================== QUIRKS OF SUHANI ==================== */}
+      <section id="quirks" className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2 
+            className="font-heading text-3xl sm:text-4xl font-bold text-center text-[#FDFBF7] mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            What Makes Suhani, Suhani
+          </motion.h2>
+          <motion.p 
+            className="font-body text-center text-[#A67C52] mb-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Hover to flip
+          </motion.p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <QuirkCard
+                icon={Heart}
+                title="Favorite Color"
+                frontText="Brown"
+                backText="Everything she owns is brown. Her wardrobe is basically a coffee shop."
+                color="#5D4037"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <QuirkCard
+                icon={Moon}
+                title="Saje Sleep Well"
+                frontText="Her 'vape'"
+                backText="She uses Saje Sleep Well like other people use vapes. Will offer you essential oils before asking how you're doing."
+                color="#8B6914"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <QuirkCard
+                icon={Gamepad2}
+                title="Among Us"
+                frontText="Always Crewmate"
+                backText="Has gotten crewmate 47 times in a row. This is statistically impossible."
+                color="#D32F2F"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+            >
+              <QuirkCard
+                icon={UtensilsCrossed}
+                title="Four Olives"
+                frontText="Vancouver HQ"
+                backText="Her favorite restaurant. Probably has a reserved booth at this point."
+                color="#A67C52"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+            >
+              <QuirkCard
+                icon={GraduationCap}
+                title="Master's Degree"
+                frontText="The Dream"
+                backText="Currently manifesting. Professors aren't ready."
+                color="#4A3B32"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+            >
+              <QuirkCard
+                icon={Dices}
+                title="Monodeal"
+                frontText="Champion"
+                backText="Will bankrupt you with a smile. No mercy in Monopoly Deal."
+                color="#8B6914"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* ==================== HAPPY BIRTHDAY SECTION ==================== */}
+      <section id="birthday" className="py-32 px-4 relative">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.h2 
-            className="big-birthday-text font-heading font-extrabold text-white mb-8"
+            className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#8B6914] mb-8"
             initial={{ scale: 0.5, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 100 }}
           >
-            HAPPY BIRTHDAY SUHANI
+            HAPPY BIRTHDAY
           </motion.h2>
           
-          <motion.div
-            className="glass rounded-2xl p-6 inline-block"
-            initial={{ y: 30, opacity: 0 }}
+          <motion.p
+            className="font-body text-xl text-[#FDFBF7]/80 mb-8"
+            initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            <p className="font-handwritten text-xl text-[#5D4037]">
-              Blessings delivered ✅ (Sage-approved)
-            </p>
-          </motion.div>
+            23 looks good on you
+          </motion.p>
 
           <motion.div
-            className="mt-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -436,128 +528,16 @@ function App() {
             <Button
               data-testid="big-confetti-btn"
               onClick={fireConfetti}
-              className="bg-white text-[#5D4037] hover:bg-[#EFEBE9] px-10 py-6 text-xl rounded-full font-heading"
+              className="bg-[#8B6914] hover:bg-[#A67C52] text-white px-10 py-6 text-xl rounded-full font-heading"
             >
               <Sparkles className="w-6 h-6 mr-2" />
-              Send More Confetti
+              More Confetti
             </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* ==================== FUN FACT CARDS ==================== */}
-      <section id="facts" className="py-20 px-4 bg-gradient-to-b from-[#EFEBE9] to-[#FDFBF7]">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2 
-            className="font-heading text-3xl sm:text-4xl font-bold text-center text-[#5D4037] mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            What Makes Suhani... Suhani ✨
-          </motion.h2>
-          <motion.p 
-            className="font-handwritten text-center text-[#8D6E63] mb-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            (Flip the cards to reveal the tea ☕)
-          </motion.p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <FlipCard
-                icon={Heart}
-                title="Favorite Color"
-                frontText="BROWN"
-                backText="Mocha queen energy. If it ain't brown, she ain't wearing it 🤎"
-                color="#8D6E63"
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <FlipCard
-                icon={Moon}
-                title="Signature Vibe"
-                frontText="Saje Sleep Well 🌿"
-                backText="Will offer you essential oils before asking how you're doing. The sage-iest friend."
-                color="#8FA895"
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <FlipCard
-                icon={Gamepad2}
-                title="Game"
-                frontText="Among Us 🎮"
-                backText="Gets crewmate EVERY. SINGLE. TIME. Still calls emergency meetings tho 🚨"
-                color="#D32F2F"
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <FlipCard
-                icon={UtensilsCrossed}
-                title="Restaurant"
-                frontText="Four Olives 🍝"
-                backText="Has her own reserved booth (in her dreams). Vancouver's finest."
-                color="#5D4037"
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-            >
-              <FlipCard
-                icon={GraduationCap}
-                title="Dream"
-                frontText="Master's Degree 📚"
-                backText="Future genius in the making. The professors aren't ready."
-                color="#4A3B32"
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-            >
-              <FlipCard
-                icon={Sparkles}
-                title="Inside Joke"
-                frontText="Monodeal 🎯"
-                backText="IYKYK. The Monopoly Deal champion. Will bankrupt you with a smile."
-                color="#A1887F"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <div className="section-divider" />
 
       {/* ==================== AMONG US SECTION ==================== */}
       <section id="amongus" className="among-us-section py-20 px-4">
@@ -571,46 +551,33 @@ function App() {
             <h2 className="font-heading text-4xl sm:text-5xl font-extrabold text-[#D32F2F] mb-4">
               🚨 EMERGENCY MEETING 🚨
             </h2>
-            <p className="font-body text-xl text-[#4A3B32]">
-              Suhani is SUS… of being too iconic.
-            </p>
           </motion.div>
 
-          <div className="flex justify-center gap-4 mb-12">
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 2, delay: 0 }}
-            >
-              <Crewmate color="#5D4037" className="w-16 h-20" />
+          <div className="flex justify-center gap-4 mb-8">
+            <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2, delay: 0 }}>
+              <Crewmate color="#5D4037" className="w-14 h-18" />
             </motion.div>
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 2, delay: 0.3 }}
-            >
-              <Crewmate color="#8D6E63" className="w-16 h-20" />
+            <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2, delay: 0.3 }}>
+              <Crewmate color="#8B6914" className="w-14 h-18" />
             </motion.div>
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 2, delay: 0.6 }}
-            >
-              <Crewmate color="#D32F2F" className="w-16 h-20" />
+            <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2, delay: 0.6 }}>
+              <Crewmate color="#D32F2F" className="w-14 h-18" />
             </motion.div>
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 2, delay: 0.9 }}
-            >
-              <Crewmate color="#8FA895" className="w-16 h-20" />
+            <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2, delay: 0.9 }}>
+              <Crewmate color="#A67C52" className="w-14 h-18" />
             </motion.div>
           </div>
 
           <motion.div
-            className="glass rounded-2xl p-8 max-w-md mx-auto"
-            initial={{ y: 30, opacity: 0 }}
+            className="glass-dark rounded-xl p-8 max-w-md mx-auto"
+            initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
           >
-            <p className="font-handwritten text-lg text-[#5D4037] mb-6">
-              Fun fact: Suhani has gotten crewmate 47 times in a row. Statistically impossible. Suspiciously iconic.
+            <p className="font-body text-[#FDFBF7]/80 mb-6">
+              Suhani has gotten crewmate 47 times in a row.
+              <br /><br />
+              <span className="text-[#8B6914]">This is statistically impossible.</span>
             </p>
             
             <Button
@@ -618,138 +585,112 @@ function App() {
               onClick={() => setVoteModalOpen(true)}
               className="emergency-btn text-white px-8 py-4 text-lg rounded-full font-body w-full"
             >
-              Vote: Suhani = Imposter? 🗳️
+              Vote: Suhani = Imposter?
             </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* ==================== SAGE RELAX SECTION ==================== */}
-      <section id="sage" className={`sage-section py-20 px-4 ${relaxMode ? 'relaxed' : ''}`}>
+      <div className="section-divider" />
+
+      {/* ==================== MONODEAL SECTION ==================== */}
+      <section id="monodeal" className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2 
-            className="font-heading text-3xl sm:text-4xl font-bold text-[#4A3B32] mb-4"
+            className="font-heading text-3xl sm:text-4xl font-bold text-[#FDFBF7] mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Sage Sleep Well Mode 🌿
+            Monodeal
           </motion.h2>
           
-          <motion.p 
-            className="font-body text-lg text-[#5D4037]/80 mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            Stress? Not invited. Sleep Well only.
-          </motion.p>
-
           <motion.div
-            className="glass rounded-2xl p-8 max-w-md mx-auto"
-            initial={{ y: 30, opacity: 0 }}
+            className="glass-dark rounded-xl p-8 max-w-md mx-auto mt-8"
+            initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <span className="font-body text-[#4A3B32]">Activate Sage Relax Mode</span>
-              <Switch
-                data-testid="relax-mode-toggle"
-                checked={relaxMode}
-                onCheckedChange={setRelaxMode}
-              />
-            </div>
-            
-            {relaxMode && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <p className="font-handwritten text-[#8FA895] mb-4">
-                  ✨ Vibes = immaculate ✨
-                </p>
-                <Button
-                  data-testid="play-music-btn"
-                  onClick={toggleAudio}
-                  variant="outline"
-                  className="border-[#8FA895] text-[#5D4037] hover:bg-[#8FA895]/20"
-                >
-                  {isPlaying ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
-                  {isPlaying ? 'Pause Vibes' : 'Play Plain Jane'}
-                </Button>
-              </motion.div>
-            )}
+            <Dices className="w-16 h-16 mx-auto mb-4 text-[#8B6914]" />
+            <p className="font-body text-[#FDFBF7]/80">
+              Do not play Monopoly Deal with Suhani unless you're ready to lose everything.
+            </p>
+            <p className="font-body text-[#A67C52] mt-4 text-sm">
+              Current win streak: Unknown (she stopped counting)
+            </p>
           </motion.div>
-
-          <motion.p 
-            className="font-handwritten text-[#8FA895] mt-8 text-lg"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            "Suhani's secret weapon: essential oils and chaos"
-          </motion.p>
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* ==================== FOUR OLIVES SECTION ==================== */}
-      <section id="olives" className="olives-section py-20 px-4">
+      <section id="olives" className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2 
-            className="font-heading text-3xl sm:text-4xl font-bold text-[#5D4037] mb-4"
+            className="font-heading text-3xl sm:text-4xl font-bold text-[#FDFBF7] mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Four Olives Fan Club 🍝
+            Four Olives
           </motion.h2>
           
           <motion.p 
-            className="font-body text-lg text-[#8D6E63] mb-8"
+            className="font-body text-[#A67C52] mb-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            The Official Suhani HQ in Vancouver
+            Her favorite restaurant in Vancouver
           </motion.p>
 
           <motion.div
-            className="bg-white rounded-2xl p-8 max-w-md mx-auto shadow-lg"
-            initial={{ y: 30, opacity: 0 }}
+            className="glass-dark rounded-xl p-8 max-w-md mx-auto"
+            initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
           >
-            <div className="text-left mb-6">
-              <p className="font-heading text-lg text-[#5D4037] mb-2">📍 Order for Suhani:</p>
-              <p className="font-handwritten text-[#8D6E63]">
-                "The tastiest thing on the menu"<br />
-                (she can't decide, she wants it all)
-              </p>
-            </div>
+            <UtensilsCrossed className="w-12 h-12 mx-auto mb-4 text-[#8B6914]" />
+            <p className="font-body text-[#FDFBF7]/80 mb-6">
+              Order: "Whatever looks good"
+              <br />
+              Translation: Everything on the menu
+            </p>
             
             <Button
               data-testid="reserve-table-btn"
               onClick={() => setReservationModalOpen(true)}
-              className="bg-[#5D4037] hover:bg-[#4A3B32] text-white px-8 py-4 rounded-full font-body w-full"
+              className="bg-[#8B6914] hover:bg-[#A67C52] text-white px-8 py-4 rounded-full font-body w-full"
             >
-              <UtensilsCrossed className="w-4 h-4 mr-2" />
-              Reserve Table for Suhani
+              Reserve Table
             </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* ==================== MASTERS ERA SECTION ==================== */}
-      <section id="masters" className="masters-section py-20 px-4">
+      <div className="section-divider" />
+
+      {/* ==================== MASTERS SECTION ==================== */}
+      <section id="masters" className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2 
-            className="font-heading text-3xl sm:text-4xl font-bold text-[#5D4037] mb-4"
+            className="font-heading text-3xl sm:text-4xl font-bold text-[#FDFBF7] mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Master's Era Loading… 📚
+            Master's Degree
           </motion.h2>
+
+          <motion.p 
+            className="font-body text-[#A67C52] mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Loading...
+          </motion.p>
 
           <motion.div
             className="max-w-md mx-auto mb-8"
@@ -758,20 +699,11 @@ function App() {
             viewport={{ once: true }}
           >
             <div className="flex justify-between mb-2">
-              <span className="font-body text-[#8D6E63]">Progress</span>
-              <span className="font-heading text-[#5D4037]">{mastersProgress}%</span>
+              <span className="font-body text-[#A67C52]">Progress</span>
+              <span className="font-heading text-[#8B6914]">{mastersProgress}%</span>
             </div>
-            <Progress value={mastersProgress} className="h-4 bg-[#D7CCC8]" />
+            <Progress value={mastersProgress} className="h-3 bg-[#2a2a2a]" />
           </motion.div>
-
-          <motion.p 
-            className="font-handwritten text-xl text-[#5D4037] mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            Future Master's student. Current legend.
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -782,7 +714,7 @@ function App() {
               data-testid="encouragement-btn"
               onClick={() => setEncouragementRevealed(true)}
               variant="outline"
-              className="border-[#5D4037] text-[#5D4037] hover:bg-[#5D4037] hover:text-white px-8 py-4 rounded-full"
+              className="border-[#8B6914] text-[#8B6914] hover:bg-[#8B6914] hover:text-white px-8 py-4 rounded-full"
             >
               <GraduationCap className="w-4 h-4 mr-2" />
               Send Encouragement
@@ -795,10 +727,10 @@ function App() {
                 initial={{ opacity: 0, y: 20, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="mt-8 glass rounded-2xl p-6 max-w-md mx-auto"
+                className="mt-8 glass-dark rounded-xl p-6 max-w-md mx-auto"
               >
-                <p className="font-handwritten text-lg text-[#5D4037]">
-                  "Suhani, you're going to SLAY that Master's degree. The universities aren't ready for your brown aesthetic energy. Go get 'em! 🎓✨"
+                <p className="font-body text-[#FDFBF7]/80">
+                  You're going to crush that Master's degree. Good luck!
                 </p>
               </motion.div>
             )}
@@ -806,27 +738,11 @@ function App() {
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* ==================== FOOTER ==================== */}
-      <section id="footer" className="footer-section py-20 px-4">
+      <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h2 
-            className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            We love you, Suhani 💛
-          </motion.h2>
-
-          <motion.p 
-            className="font-handwritten text-xl text-white/80 mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            Here's to 23 more years of being iconic
-          </motion.p>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -835,7 +751,7 @@ function App() {
             <Button
               data-testid="replay-confetti-btn"
               onClick={fireConfetti}
-              className="bg-white text-[#5D4037] hover:bg-[#EFEBE9] px-10 py-6 text-xl rounded-full font-heading"
+              className="bg-[#8B6914] hover:bg-[#A67C52] text-white px-10 py-6 text-xl rounded-full font-heading"
             >
               <PartyPopper className="w-6 h-6 mr-2" />
               Replay Confetti
@@ -843,12 +759,12 @@ function App() {
           </motion.div>
 
           <motion.p 
-            className="font-body text-white/60 mt-12 text-sm"
+            className="font-body text-[#A67C52]/60 mt-12 text-sm"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            Built with love, brown vibes, and suspicious amounts of Among Us references.
+            Happy 23rd Birthday, Suhani 🤎
           </motion.p>
         </div>
       </section>
@@ -865,38 +781,38 @@ function App() {
 
       {/* ==================== LIGHTBOX MODAL ==================== */}
       <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
-        <DialogContent className="max-w-4xl bg-[#4A3B32]/95 border-none p-2 sm:p-4">
+        <DialogContent className="max-w-4xl bg-[#0a0a0a]/95 border-[#2a2a2a] p-2 sm:p-4">
           <div className="relative">
             <button
               onClick={() => setLightboxOpen(false)}
-              className="absolute top-2 right-2 z-10 bg-white/20 hover:bg-white/30 rounded-full p-2"
+              className="absolute top-2 right-2 z-10 bg-white/10 hover:bg-white/20 rounded-full p-2"
               data-testid="lightbox-close-btn"
             >
               <X className="w-6 h-6 text-white" />
             </button>
             
             <img
-              src={USER_PHOTOS[lightboxIndex]?.src}
-              alt="Gallery"
+              src={ALL_PHOTOS[lightboxIndex]}
+              alt=""
               className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
             />
             
             <div className="flex justify-between items-center mt-4 px-4">
               <button
                 onClick={prevImage}
-                className="bg-white/20 hover:bg-white/30 rounded-full p-3"
+                className="bg-white/10 hover:bg-white/20 rounded-full p-3"
                 data-testid="lightbox-prev-btn"
               >
                 <ChevronLeft className="w-6 h-6 text-white" />
               </button>
               
-              <p className="font-handwritten text-white text-lg text-center px-4">
-                {FUNNY_CAPTIONS[lightboxIndex % FUNNY_CAPTIONS.length]}
-              </p>
+              <span className="text-[#A67C52] text-sm">
+                {lightboxIndex + 1} / {ALL_PHOTOS.length}
+              </span>
               
               <button
                 onClick={nextImage}
-                className="bg-white/20 hover:bg-white/30 rounded-full p-3"
+                className="bg-white/10 hover:bg-white/20 rounded-full p-3"
                 data-testid="lightbox-next-btn"
               >
                 <ChevronRight className="w-6 h-6 text-white" />
@@ -908,14 +824,11 @@ function App() {
 
       {/* ==================== VOTE MODAL ==================== */}
       <Dialog open={voteModalOpen} onOpenChange={setVoteModalOpen}>
-        <DialogContent className="bg-[#FFEBEE] border-2 border-[#D32F2F]">
+        <DialogContent className="bg-[#141414] border-[#D32F2F]">
           <DialogHeader>
             <DialogTitle className="font-heading text-2xl text-[#D32F2F] text-center">
               🚨 VOTING TIME 🚨
             </DialogTitle>
-            <DialogDescription className="text-center">
-              Is Suhani the imposter?
-            </DialogDescription>
           </DialogHeader>
           
           {!voteResult ? (
@@ -931,7 +844,7 @@ function App() {
                 data-testid="vote-no-btn"
                 onClick={handleVote}
                 variant="outline"
-                className="border-[#D32F2F] text-[#D32F2F] py-6 text-lg"
+                className="border-[#D32F2F] text-[#D32F2F] py-6 text-lg hover:bg-[#D32F2F]/10"
               >
                 No, she's innocent 👼
               </Button>
@@ -942,14 +855,14 @@ function App() {
               animate={{ scale: 1, opacity: 1 }}
               className="text-center py-8"
             >
-              <p className="font-heading text-2xl text-[#5D4037] mb-4">
+              <p className="font-heading text-xl text-[#FDFBF7] mb-4">
                 VOTING RESULTS:
               </p>
-              <p className="font-handwritten text-xl text-[#D32F2F]">
-                No. She's the MAIN CHARACTER.
+              <p className="font-body text-[#D32F2F]">
+                Suhani was not the imposter.
               </p>
-              <p className="font-body text-[#8D6E63] mt-4">
-                (0 votes for imposter. Unanimous icon status.)
+              <p className="font-body text-[#A67C52] mt-4 text-sm">
+                (0 imposters remain)
               </p>
             </motion.div>
           )}
@@ -958,10 +871,10 @@ function App() {
 
       {/* ==================== RESERVATION MODAL ==================== */}
       <Dialog open={reservationModalOpen} onOpenChange={setReservationModalOpen}>
-        <DialogContent className="bg-white border-2 border-[#5D4037]">
+        <DialogContent className="bg-[#141414] border-[#8B6914]">
           <DialogHeader>
-            <DialogTitle className="font-heading text-2xl text-[#5D4037] text-center">
-              🍝 Four Olives Reservation 🍝
+            <DialogTitle className="font-heading text-2xl text-[#8B6914] text-center">
+              Four Olives Reservation
             </DialogTitle>
           </DialogHeader>
           
@@ -970,26 +883,26 @@ function App() {
             animate={{ scale: 1, opacity: 1 }}
             className="text-center py-6"
           >
-            <div className="bg-[#F5F5DC] rounded-lg p-6 mb-4">
-              <p className="font-body text-[#5D4037] mb-2">Reservation confirmed for:</p>
-              <p className="font-heading text-xl text-[#5D4037]">
-                Suhani + her 23 years of slay
+            <div className="bg-[#0a0a0a] rounded-lg p-6 mb-4 border border-[#2a2a2a]">
+              <p className="font-body text-[#FDFBF7]/80 mb-2">Reservation confirmed for:</p>
+              <p className="font-heading text-lg text-[#8B6914]">
+                Suhani
               </p>
             </div>
             
-            <p className="font-handwritten text-[#8D6E63]">
-              Table: The best one (obviously)<br />
-              Time: Whenever the queen arrives<br />
-              Special requests: Brown tablecloth, Sage candle, Among Us napkins
+            <p className="font-body text-[#A67C52] text-sm">
+              Table: The best one<br />
+              Time: Whenever she arrives<br />
+              Special requests: Brown napkins
             </p>
           </motion.div>
           
           <Button
             onClick={() => setReservationModalOpen(false)}
-            className="bg-[#5D4037] hover:bg-[#4A3B32] text-white"
+            className="bg-[#8B6914] hover:bg-[#A67C52] text-white"
             data-testid="reservation-close-btn"
           >
-            Got it, bestie ✨
+            Got it
           </Button>
         </DialogContent>
       </Dialog>
