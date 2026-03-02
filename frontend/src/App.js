@@ -127,6 +127,9 @@ const NavDots = ({ activeSection }) => {
   );
 };
 
+// Saje Product Image
+const SAJE_IMAGE = "https://customer-assets.emergentagent.com/job_57bf3841-2aa7-492c-b653-218ee28c3459/artifacts/y96m98r6_image.png";
+
 // Main App Component
 function App() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -138,6 +141,7 @@ function App() {
   const [encouragementRevealed, setEncouragementRevealed] = useState(false);
   const [mastersProgress, setMastersProgress] = useState(23);
   const [activeSection, setActiveSection] = useState('hero');
+  const [showMusicModal, setShowMusicModal] = useState(false);
   const audioRef = useRef(null);
 
   // Confetti function - brown colors
